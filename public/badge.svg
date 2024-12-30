@@ -1,0 +1,28 @@
+<svg viewBox="675.5736 -217.2748 112.5 152.439" width="112.5" height="152.439"
+    xmlns="http://www.w3.org/2000/svg">
+    <defs></defs>
+    <g data-v-0dd9719b="" class="iconmbgsvg"
+        transform="matrix(1, 0, 0, 1, 605.8977141067044, -274.4727824102756)">
+        <g fill="#00edbe" hollow-target="textNormalTran"
+            transform="matrix(1, 0, 0, 1, 49.485844, 57.197942)">
+            <g opacity="1" transform="translate(20.19000244140625,0)">
+                <g>
+                    <rect fill="#000000" fill-opacity="0" stroke-width="2" x="0" y="0" width="112.5"
+                        height="152.4390243902439" class="image-rect"></rect>
+                    <svg x="0" y="0" width="112.5" height="152.4390243902439"
+                        filtersec="colorsb9336969389" class="image-svg-svg primary"
+                        style="overflow: visible;">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 76.55999755859375 103.73999786376953">
+                            <path fill="#00edbe" d="M9.11 34.3L.08 29.09v40.96l9.03 5.21V34.3z"></path>
+                            <path fill="#00edbe"
+                                d="M57.04 102.89V40.04l-2.99-1.68-42.11-24.35L0 20.67v.23l2.99 1.76 42.1 24.27V96l10.49 6.05 1.46.84z"></path>
+                            <path fill="#141beb"
+                                d="M31.47 0l42.1 24.27 2.99 1.76V96.85l-11.94 6.89V32.92L22.51 8.57 20.14 7.2 31.47 0z"></path>
+                        </svg>
+                    </svg>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
