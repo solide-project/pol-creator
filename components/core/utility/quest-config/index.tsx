@@ -31,7 +31,7 @@ export function UtilityQuestConfig({ }: UtilityQuestConfigProps) {
             setIsLoading(true)
             setOutput("")
             const items = convertImportToMongo(validate(content))
-            setOutput(JSON.stringify(items))
+            setOutput(JSON.stringify(items, null, 2))
         } catch (e: any) {
             console.error(e)
             if (e instanceof SyntaxError) {
@@ -57,8 +57,8 @@ export function UtilityQuestConfig({ }: UtilityQuestConfigProps) {
                         {isLoading ? "Validating..." : "Submit"}
                     </Button>
 
-                    <div className="my-2">
-                        {output && <div className="text-wrap">{output}</div>}
+                    <div className="my-2 px-3">
+                        {output && <div className="break-all">{output}</div>}
                     </div>
                 </div>
                 <div className="col-span-12 lg:col-span-8 order-first flex flex-col">

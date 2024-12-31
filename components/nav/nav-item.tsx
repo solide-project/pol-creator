@@ -11,7 +11,7 @@ export function NavItem({ className, title, children, ...props }: NavItemProps) 
             <NavigationMenuLink>
                 <div
                     className={cn(
-                        "block select-none space-y-1 leading-none no-underlin p-3 py-4 rounded-[18px] outline-none transition-colors bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer",
+                        "block select-none space-y-1 leading-none no-underlin p-3 py-4 rounded-[18px] outline-none transition-colors bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer dark:text-black",
                         className
                     )}
                     {...props}

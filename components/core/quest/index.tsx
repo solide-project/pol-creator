@@ -10,7 +10,7 @@ import { SampleDrawer } from "@/components/core/quest/sample"
 import { SampleQuestProp } from "@/components/core/quest/sample/shared"
 import { ChainType, useCreator } from "@/components/providers/creator-provider"
 import { processDeploymentSubmission, processDeployTransaction, SubmissionReceipt } from "@/lib/quest/api"
-import { getRPC } from "@/lib/chains"
+import { getRPC, getTransactionExplorer } from "@/lib/chains"
 import { createPublicClient, http, TransactionNotFoundError } from "viem"
 import { QuestTestToolbar } from "./toolbar"
 
@@ -147,17 +147,17 @@ export function QuestTester({ }: QuestTesterProps) {
                 <UtilityHeader title="Quest Test" />
 
                 <QuestTestToolbar handleValueChange={handleValueChange}
-                    input={value} output={output} />
+                    input={value} />
 
                 <Input value={value} onChange={(e) => setValue(e.target.value)}
                     placeholder="Transaction Hash" />
-                <SampleDrawer onValueChange={handleValueChange} />
-                <Button disabled={isLoading} onClick={handleTest}>
+
+                <Button className="my-2 w-full" disabled={isLoading} onClick={handleTest}>
                     {isLoading ? "Validating..." : "Submit"}
                 </Button>
 
-                <div>
-                    {output && <div className="text-wrap">{output}</div>}
+                <div className="my-2 px-3">
+                    {output && <div className="break-all">{output}</div>}
                 </div>
             </div>
             <div className="col-span-12 lg:col-span-8 order-first py-8">

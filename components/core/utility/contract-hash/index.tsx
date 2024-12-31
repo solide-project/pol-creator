@@ -83,8 +83,8 @@ export function UtilityContractHash({ }: UtilityContractHashProps) {
 
                 <Input onChange={handleOnChange} value={value} placeholder="0x..." />
 
-                <div className="my-2">
-                    {output && <div className="text-wrap">{output}</div>}
+                <div className="my-2 px-3">
+                    {output && <div className="break-all">{output}</div>}
                 </div>
 
                 <Button className="w-full"

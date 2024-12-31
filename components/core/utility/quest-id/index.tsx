@@ -57,8 +57,8 @@ export function UtilityQuestId({ }: UtilityQuestIdProps) {
 
                 <Input onChange={handleOnChange} value={value} placeholder={`${githubUri}/...`} />
 
-                <div className="my-2">
-                    {output && <div className="text-wrap">{output}</div>}
+                <div className="my-2 px-3">
+                    {output && <div className="break-all">{output}</div>}
                 </div>
 
                 <Button className="w-full"
