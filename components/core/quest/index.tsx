@@ -6,13 +6,17 @@ import { Input } from "@/components/ui/input"
 import { UtilityHeader } from "@/components/core/utility/header"
 import JsonEditor from "@/components/core/quest/editor"
 import { useEditor } from "@/components/core/shared/editor/provider"
-import { SampleDrawer } from "@/components/core/quest/sample"
 import { SampleQuestProp } from "@/components/core/quest/sample/shared"
 import { ChainType, useCreator } from "@/components/providers/creator-provider"
-import { processDeploymentSubmission, processDeployTransaction, SubmissionReceipt } from "@/lib/quest/api"
-import { getRPC, getTransactionExplorer } from "@/lib/chains"
+import { getRPC } from "@/lib/chains"
 import { createPublicClient, http, TransactionNotFoundError } from "viem"
 import { QuestTestToolbar } from "./toolbar"
+import { Checkbox } from "@/components/ui/checkbox"
+import {
+    generateDataHash,
+    processContractData, processDeploymentSubmission, processDeployTransaction,
+    processNativeValueTransaction, SubmissionReceipt
+} from "@polearn/core"
 
 interface QuestTesterProps extends React.HTMLAttributes<HTMLDivElement> {
 }
@@ -30,6 +34,8 @@ export function QuestTester({ }: QuestTesterProps) {
     const editor = useEditor()
 
     const [value, setValue] = useState("")
+    const [nonTransaction, setNonTransaction] = useState(false)
+
     const [output, setOutPut] = useState("")
     const [isLoading, setIsLoading] = useState(false)
 
@@ -64,11 +70,21 @@ export function QuestTester({ }: QuestTesterProps) {
         }
     }
 
-    const generateBody = () => ({
-        id: "0x" as `0x${string}`,
-        transactionHash: value as `0x${string}`,
-        user: "0x" as `0x${string}`,
-    })
+    const generateBody = () => {
+        if (nonTransaction || !value.startsWith("0x")) {
+            return {
+                id: "0x" as `0x${string}`,
+                transactionHash: generateDataHash(value) as `0x${string}`,
+                user: "0x" as `0x${string}`,
+            }
+        }
+
+        return {
+            id: "0x" as `0x${string}`,
+            transactionHash: value as `0x${string}`,
+            user: "0x" as `0x${string}`,
+        }
+    }
 
     const generateSubmission = () => {
         try {
@@ -82,7 +98,6 @@ export function QuestTester({ }: QuestTesterProps) {
         const body = generateBody()
         const submission: any = generateSubmission()
 
-        console.log(body, submission)
         const opts: any = {
             testing: true
         }
@@ -99,6 +114,14 @@ export function QuestTester({ }: QuestTesterProps) {
             case "deployment":
                 reciept = await processDeploymentSubmission(client, body, submission, opts)
                 if (!reciept.result) throw new Error("Invalid Deployment")
+                break;
+            case "value":
+                reciept = await processNativeValueTransaction(client, body, submission, opts)
+                if (!reciept.result) throw new Error("Invalid Deployment")
+                break;
+            case "data":
+                reciept = await processContractData(client, body, submission, opts)
+                if (!reciept.result) throw new Error("Invalid Contract Value")
                 break;
             default:
                 reciept = await processDeployTransaction(client, body, submission, opts)
@@ -151,6 +174,12 @@ export function QuestTester({ }: QuestTesterProps) {
 
                 <Input value={value} onChange={(e) => setValue(e.target.value)}
                     placeholder="Transaction Hash" />
+
+                <div className="flex items-center gap-2 my-2">
+                    <div>Non Transaction</div>
+                    <Checkbox checked={nonTransaction}
+                        onCheckedChange={(e) => setNonTransaction(!nonTransaction)} />
+                </div>
 
                 <Button className="my-2 w-full" disabled={isLoading} onClick={handleTest}>
                     {isLoading ? "Validating..." : "Submit"}

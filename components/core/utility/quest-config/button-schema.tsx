@@ -8,7 +8,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { CodeSnippet } from "../../shared/code-snippet"
-import { $schema } from "@/lib/quest/validate"
+import { $schema } from "@/lib/polearn/validator"
 
 interface ButtonSchemaProps extends React.HTMLAttributes<HTMLDivElement> {
 }

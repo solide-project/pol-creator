@@ -8,9 +8,9 @@ import { SampleItemProp } from "@/components/core/utility/contract-hash/sample/s
 import { ChainType, useCreator } from "@/components/providers/creator-provider"
 import { createPublicClient, http, isAddress, sha256 } from "viem"
 import { getRPC } from "@/lib/chains"
-import { removeMetadata, replaceAddresses, replacePushData } from "@/lib/quest/utils";
 import { getCode } from "@/lib/move/sui"
 import { ContractHashToolbar } from "@/components/core/utility/contract-hash/toolbar"
+import { cleanBytecode } from "@/lib/polearn/core"
 
 interface UtilityContractHashProps extends React.HTMLAttributes<HTMLDivElement> {
 }
@@ -52,10 +52,7 @@ export function UtilityContractHash({ }: UtilityContractHashProps) {
 
             bytecode = await client.getCode(
                 { address: value as `0x${string}` }) as `0x${string}`
-
-            bytecode = removeMetadata(bytecode)
-            bytecode = replaceAddresses(bytecode)
-            bytecode = replacePushData(bytecode)
+            bytecode = cleanBytecode(bytecode)
         } else if (creator.chainType === ChainType.MOVE) {
             bytecode = await getCode(creator.chainId, value);
         }

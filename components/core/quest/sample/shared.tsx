@@ -84,5 +84,108 @@ export const samples: SampleQuestProp[] = [
         transaction: "0x46beaa78bbd54dd2e67f94d8a9313e1816bb9e2d889a37ec2575d8556248d382",
         title: "Deploy smart contract",
         description: ""
+    },
+    {
+        quest: {
+            "path": "01_basic_fundamental/06_getting_ape_testnet",
+            "type": "value",
+            "chain": "33111",
+            "from": "0x05C1A44374eE3dB90bCCEA6d5Bbda138d0874033",
+            "value": "1000000000000000000"
+        },
+        transaction: "0xe6147be08cd71d73d19cd1621ab74af5690463dd9c5683d1f6328f03f88d8b64",
+        title: "ApeChain Facuet 1 $APE",
+        description: ""
+    },
+    {
+        quest: {
+            "path": "01_basic_fundamental/06_getting_ape_testnet",
+            "type": "data",
+            "chain": "33139",
+            "contract": "0x2880aB155794e7179c9eE2e38200202908C17B43",
+            "variable": "getPriceNoOlderThan",
+            "abi": [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "bytes32",
+                            "name": "id",
+                            "type": "bytes32"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "age",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "getPriceNoOlderThan",
+                    "outputs": [
+                        {
+                            "components": [
+                                {
+                                    "internalType": "int64",
+                                    "name": "price",
+                                    "type": "int64"
+                                },
+                                {
+                                    "internalType": "uint64",
+                                    "name": "conf",
+                                    "type": "uint64"
+                                },
+                                {
+                                    "internalType": "int32",
+                                    "name": "expo",
+                                    "type": "int32"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "publishTime",
+                                    "type": "uint256"
+                                }
+                            ],
+                            "internalType": "struct PythStructs.Price",
+                            "name": "price",
+                            "type": "tuple"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            ],
+            "args": [
+                "0x15add95022ae13563a11992e727c91bdb6b55bc183d9d747436c80a483d8c864",
+                "1736651044"
+            ]
+        },
+        transaction: `{"price":     "69654195","conf":"133607","expo":      -8,   "publishTime":"1728026940"}`,
+        title: "Calling Pyth Oracles getPriceNoOlderThan on ApeChain",
+        description: "0xdf81a29cb81c55faa6d2a2690bc7ec8d2e52ae3497a6d4876ed52b39c8e25ca2 "
+    },
+    {
+        quest: {
+            "path": "01_basic_fundamental/06_getting_ape_testnet",
+            "type": "data",
+            "chain": "33139",
+            "contract": "0x2880aB155794e7179c9eE2e38200202908C17B43",
+            "variable": "wormhole",
+            "abi": [
+                {
+                    "inputs": [],
+                    "name": "wormhole",
+                    "outputs": [
+                        {
+                            "internalType": "contract IWormhole",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            ]
+        },
+        transaction: `"0xb27e5ca259702f209a29225d0eDdC131039C9933"`,
+        title: "Calling The address of Contract",
+        description: "0xdf81a29cb81c55faa6d2a2690bc7ec8d2e52ae3497a6d4876ed52b39c8e25ca2 "
     }
 ]

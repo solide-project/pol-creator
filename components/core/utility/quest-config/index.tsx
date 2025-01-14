@@ -2,21 +2,17 @@
 
 import { useState } from "react"
 import { UtilityHeader } from "../header"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { useCreator } from "@/components/providers/creator-provider"
 import MarkdownEditor from "./editor"
-import { SampleDrawer } from "./sample"
-import { validate } from "@/lib/quest/validate"
-import { convertImportToMongo } from "@/lib/quest/converter"
 import { useEditor } from "../../shared/editor/provider"
 import { QuestConfigToolbar } from "./toolbar"
+import { convertImportToMongo } from "@/lib/polearn/core"
+import { validate } from "@/lib/polearn/validator"
 
 interface UtilityQuestConfigProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function UtilityQuestConfig({ }: UtilityQuestConfigProps) {
-    const creator = useCreator()
     const { content } = useEditor()
 
     const [output, setOutput] = useState<string>("")

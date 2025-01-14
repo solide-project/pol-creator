@@ -27,6 +27,10 @@ export const data: NavItemData[] = [
                 title: "Quest Configuration",
                 items: "/utility/config"
             },
+            {
+                title: "Data Hash",
+                items: "/utility/data"
+            },
         ]
     }
 ] 

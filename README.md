@@ -52,3 +52,10 @@ bun run start
 ```
 
 This command will launch the POL in your default web browser.
+
+
+
+### Core library
+Dependencies
+- viem
+- git-url-parse
