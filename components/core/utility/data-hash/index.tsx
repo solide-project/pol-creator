@@ -4,7 +4,7 @@ import { useState } from "react"
 import { UtilityHeader } from "../header"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { generateDataHash } from "@polearn/core";
+import { generateDataHash } from "@/lib/polearn/core"
 import { SampleItemProp } from "./sample/shared"
 import { QuestIdToolbar } from "./toolbar"
 

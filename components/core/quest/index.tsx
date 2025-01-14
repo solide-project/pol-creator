@@ -16,7 +16,7 @@ import {
     generateDataHash,
     processContractData, processDeploymentSubmission, processDeployTransaction,
     processNativeValueTransaction, SubmissionReceipt
-} from "@polearn/core"
+} from "@/lib/polearn/core"
 
 interface QuestTesterProps extends React.HTMLAttributes<HTMLDivElement> {
 }
