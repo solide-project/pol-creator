@@ -169,10 +169,10 @@ export const processContractData = async (client: PublicClient,
 
 function arraysEqual(arr1: any[], arr2: any[]): boolean {
     if (arr1.length !== arr2.length) return false;
-
+    
     for (let i = 0; i < arr1.length; i++) {
         // "_" meaning we can skip
-        if (arr1.toString() === '_') {
+        if (arr1[i].toString() === '_') {
             continue;
         }
 

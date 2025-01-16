@@ -20,7 +20,7 @@ export const $schema: any = {
                 type: "object",
                 properties: {
                     path: { type: "string" },
-                    type: { type: "string", enum: ["deployment", "transaction"] },
+                    type: { type: "string", enum: ["deployment", "transaction", "value", "data"] },
                     chain: { type: "string" },
                     bytecode: { type: "string" },
                     contract: { type: "string" }
