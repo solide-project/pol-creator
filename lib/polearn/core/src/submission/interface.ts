@@ -1,3 +1,5 @@
+import { MoveObjectData, MoveTransaction } from "@/lib/polearn/move/submission/interface";
+
 // Should be AbiFunction from 'viem'
 type AbiFunction = any;
 
@@ -9,7 +11,7 @@ export interface Submission {
     path: string;
     id: string;
     chain: string;
-    type: "deployment" | "transaction" | "value" | "data";
+    type: "deployment" | "transaction" | "value" | "data" | "moveObject";
     description?: string;
 }
 
@@ -28,6 +30,7 @@ export interface Transaction extends Submission {
     type: "transaction";
     abi: AbiFunction[];
     contract?: string;
+    value?: string;
     args: any[];
 }
 
@@ -52,7 +55,7 @@ export interface ContractData extends Submission {
     args?: any[];
 }
 
-export type SubmissionType = Deployment | Transaction | NativeValue | ContractData
+export type SubmissionType = Deployment | Transaction | NativeValue | ContractData | MoveObjectData | MoveTransaction
 
 export interface SubmissionOpt {
     /**

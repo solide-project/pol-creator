@@ -9,7 +9,7 @@ import {
     SubmissionReceipt,
     defaultOpts
 } from "@/lib/polearn/core";
-import { getCode, getPackageByDigest } from "@/lib/move/sui";
+import { getCode, getPackageByDigest } from "../polearn/move/sui";
 
 export const processDeploymentSubmission = async (
     client: SuiClient,

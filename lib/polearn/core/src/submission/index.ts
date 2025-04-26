@@ -67,6 +67,11 @@ export const processDeployTransaction = async (client: PublicClient,
             if (!arraysEqual(submission.args, args as any[]))
                 errMsg = "Invalid Arguments"
         }
+
+        if (submission.value) {
+            if (!arraysEqual(submission.args, args as any[]))
+                errMsg = "Invalid Arguments"
+        }
     } catch (e: any) {
         errMsg = ""
         console.log(e)

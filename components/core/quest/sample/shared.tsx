@@ -22,13 +22,47 @@ export const samples: SampleQuestProp[] = [
     },
     {
         quest: {
-            "path": "01_deploy_your_first_token/05_deploy",
+            "path": "01_deploy_your_first_token/04_sui_counter",
             "type": "deployment",
             "chain": "1282977196",
             "bytecode": "0xab1e7fe48a2491a5f6932f8d78b10809f1d70f029a964aa0870daf563748afe7"
         },
         transaction: "J83un887QYEidTptqwgVEzWEKzL3zyMw4UBR7ocWsu6G",
         title: "Deploy a Package",
+        description: "",
+        type: ChainType.MOVE
+    },
+    {
+        quest: {
+            "path": "01_deploy_your_first_token/04_sui_module",
+            "type": "moveObject",
+            "chain": "1282977196",
+            "objectType": {
+                "module": "counter",
+                "type": "Counter"
+            }
+        },
+        transaction: "0x97b9d45a75ccbec247edf1a46f5cc77a2b72e879cf56b68b81ebb55f311e5664",
+        title: "Check Module",
+        description: "",
+        type: ChainType.MOVE
+    },
+    {
+        quest: {
+            "path": "01_deploy_your_first_token/04_sui_module",
+            "type": "moveObject",
+            "chain": "1282977196",
+            "objectType": {
+                "module": "simple_oracle",
+                "type": "SimpleOracle"
+            },
+            "fields": {
+                "description": "pricing2",
+                "url": "pricing2"
+            }
+        },
+        transaction: "0xb2cbc8fc36cf0d1aaad2daf2e153695179051aa746998ec57b8a781a64f775c6",
+        title: "Check Module",
         description: "",
         type: ChainType.MOVE
     },

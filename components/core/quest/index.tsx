@@ -9,6 +9,7 @@ import { useEditor } from "@/components/core/shared/editor/provider"
 import { SampleQuestProp } from "@/components/core/quest/sample/shared"
 import { ChainType, useCreator } from "@/components/providers/creator-provider"
 import { getRPC } from "@/lib/chains"
+import { getRPC as getMoveRPC } from "@/lib/chains/move/rpc";
 import { createPublicClient, http, TransactionNotFoundError } from "viem"
 import { QuestTestToolbar } from "./toolbar"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -17,6 +18,12 @@ import {
     processContractData, processDeploymentSubmission, processDeployTransaction,
     processNativeValueTransaction, SubmissionReceipt
 } from "@/lib/polearn/core"
+import {
+    processDeploymentSubmission as processMoveDeploymentSubmission,
+    processDeployTransaction as processMoveDeployTransaction,
+    processMoveObject,
+} from "@/lib/polearn/move"
+import { SuiClient } from "@mysten/sui/client"
 
 interface QuestTesterProps extends React.HTMLAttributes<HTMLDivElement> {
 }
@@ -134,34 +141,45 @@ export function QuestTester({ }: QuestTesterProps) {
             throw new Error("Invalid Submission")
     }
 
+    const generateMoveBody = () => {
+        return {
+            id: "0x" as `0x${string}`,
+            transactionHash: value,
+            user: "0x" as `0x${string}`,
+        }
+    }
+
     const handleMoveTest = async () => {
-        const body = generateBody()
+        const body = generateMoveBody()
         const submission: any = generateSubmission()
 
         const opts: any = {
             testing: true
         }
 
-        // const rpc = getMoveRPC(submission.chain)
-        // const client = new SuiClient({ url: rpc });
+        const rpc = getMoveRPC(submission.chain)
+        const client = new SuiClient({ url: rpc });
 
-        // let reciept: SubmissionReceipt = {
-        //     result: false
-        // }
-        // switch (submission.type) {
-        //     case "deployment":
-        //         reciept = await processMoveDeploymentSubmission(client, body, submission, opts)
-        //         if (!reciept.result) throw new Error("Invalid Deployment")
-        //         break;
-        //     default:
-        //         reciept = await processMoveDeployTransaction(client, body, submission, opts)
-        //         if (!reciept.result) throw new Error("Invalid Transaction")
-        //         break;
-        // }
+        let reciept: SubmissionReceipt = {
+            result: false
+        }
+        switch (submission.type) {
+            case "deployment":
+                reciept = await processMoveDeploymentSubmission(client, body, submission, opts)
+                if (!reciept.result) throw new Error("Invalid Deployment")
+                break;
+            case "moveObject":
+                reciept = await processMoveObject(client, body, submission, opts)
+                if (!reciept.result) throw new Error("Invalid Deployment")
+                break;
+            default:
+                reciept = await processMoveDeployTransaction(client, body, submission, opts)
+                if (!reciept.result) throw new Error("Invalid Transaction")
+                break;
+        }
 
-
-        // if (!reciept.result)
-        //     throw new Error("Invalid Submission")
+        if (!reciept.result)
+            throw new Error("Invalid Submission")
     }
 
     return (

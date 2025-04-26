@@ -8,9 +8,9 @@ import { SampleItemProp } from "@/components/core/utility/contract-hash/sample/s
 import { ChainType, useCreator } from "@/components/providers/creator-provider"
 import { createPublicClient, http, isAddress, sha256 } from "viem"
 import { getRPC } from "@/lib/chains"
-import { getCode } from "@/lib/move/sui"
 import { ContractHashToolbar } from "@/components/core/utility/contract-hash/toolbar"
 import { cleanBytecode } from "@/lib/polearn/core"
+import { getCode } from "@/lib/polearn/move/sui"
 
 interface UtilityContractHashProps extends React.HTMLAttributes<HTMLDivElement> {
 }

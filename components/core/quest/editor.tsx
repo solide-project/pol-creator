@@ -2,13 +2,14 @@ import Editor, { useMonaco } from '@monaco-editor/react';
 import { useEditor } from '@/components/core/shared/editor/provider';
 import { useTheme } from 'next-themes';
 import { useEffect } from 'react';
-import { useCreator } from '@/components/providers/creator-provider';
+import { ChainType, useCreator } from '@/components/providers/creator-provider';
 import { ChainID } from '@/lib/chains';
+import { ChainID as MoveChainID } from "@/lib/chains/move/chain-id";
 import { editorTheme } from '@/components/core/shared/editor/editor';
 
 export default function JsonEditor() {
     const { theme } = useTheme()
-    const { chainId, setChainId } = useCreator()
+    const { chainId, setChainId, setChainType } = useCreator()
     const { content, setContent } = useEditor()
     const monaco = useMonaco()
 
@@ -18,6 +19,9 @@ export default function JsonEditor() {
         try {
             const quest = JSON.parse(val)
             if (quest.chain && Object.values(ChainID).includes(quest.chain as ChainID)) {
+                setChainId(quest.chain)
+            } else if (quest.chain && Object.values(MoveChainID).includes(quest.chain as MoveChainID)) {
+                setChainType(ChainType.MOVE)
                 setChainId(quest.chain)
             } else {
                 // Unknown
